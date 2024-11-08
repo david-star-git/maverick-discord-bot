@@ -1,0 +1,23 @@
+{
+  "users": {
+    "everyone": {
+      "perms": []
+    },
+    "377185902998323203": {
+      "nickname": "Lua",
+      "groups": ["dev", "mod", "tester", "special"],
+      "perms": [""]
+    },
+    "620272143955001385": {
+      "nickname": "Doxter",
+      "groups": ["tester"],
+      "perms": []
+    }
+  },
+  "groups": {
+    "dev": ["ping"],
+    "special": [],
+    "mod": [],
+    "tester": []
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "default_colors": {
+    "crimson_red": "#DC143C",
+    "sky_blue": "#87CEEB",
+    "purple": "#5863ee",
+    "dark_blue": "#0051ff",
+    "lime": "#6aff00",
+    "yellow": "#d3ff00",
+    "bright_orange": "#FFA500",
+    "teal": "#008080",
+    "magenta": "#FF00FF",
+    "gold": "#FFD700",
+    "bright_pink": "#FF69B4",
+    "aqua_blue": "#00FFFF",
+    "bright_green": "#00FF00"
+  },
+  "user_colors": {
+    "377185902998323203": "crimson_red"
+  }
+}
