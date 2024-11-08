@@ -7,3 +7,9 @@
 **I**ntegrating 
 **C**ool 
 **K**nowledge
+
+## About the bot
+
+## How to contribute
+
+## TODO
