@@ -13,12 +13,7 @@ class PingwinCog(commands.Cog):
             return
 
         if re.search(r'\bpingwin\b', message.content, re.IGNORECASE):
-            if 'pingwin!' in message.content.lower():
-                await message.reply('Pingwin')
-            if 'pingwin?' in message.content.lower():
-                await message.reply('Pingwin!')
-            else:
-                await message.reply('Pingwin!')
+            await message.reply('Pingwin!')
 
         # Check if the specific user is mentioned
         if any(mention.id == 377185902998323203 for mention in message.mentions):
