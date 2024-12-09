@@ -12,9 +12,11 @@
     "gold": "#FFD700",
     "bright_pink": "#FF69B4",
     "aqua_blue": "#00FFFF",
-    "bright_green": "#00FF00"
+    "bright_green": "#00FF00",
+    "pingwin": "#61A4C6"
   },
   "user_colors": {
-    "377185902998323203": "crimson_red"
+    "377185902998323203": "purple",
+    "353552214092152833": "aqua_blue"
   }
 }

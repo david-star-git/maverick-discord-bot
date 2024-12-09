@@ -1,5 +1,5 @@
 import json
-from imports import console
+from imports.console import console
 
 # Helper function to load JSON data
 def load_json(file_path: str):

@@ -15,7 +15,7 @@ def has_permission(user_id: int, command: str) -> bool:
     >>> has_permission(377185902998323203, 'ping')
     True
     """
-    with open('perms.json', 'r') as file:
+    with open('data/perms.json', 'r') as file:
         perms = json.load(file)
 
     # Check if user has specific permissions

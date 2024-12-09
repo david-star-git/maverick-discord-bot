@@ -16,7 +16,7 @@
   },
   "groups": {
     "dev": ["ping"],
-    "special": [],
+    "special": ["ping_server", "ping_test", "ping_yeet"],
     "mod": [],
     "tester": ["freegames"]
   }

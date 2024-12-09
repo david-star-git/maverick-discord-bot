@@ -1,8 +1,6 @@
 import discord
 import asyncio
 import os
-import json
-import aiohttp
 from discord.ext import commands
 from imports.console import console
 from imports.load_json import load_json
@@ -13,13 +11,13 @@ intents.message_content = True
 intents.guilds = True
 intents.members = True
 
-log_channel = "1296995020611784766"
+log_channel = "990388132815990824"
 
 # Create bot instance with command prefix and intents
 client = commands.Bot(command_prefix="!", intents=intents)
 
 # Load configuration and API credentials
-config = load_json('config.json')
+config = load_json('data/config.json')
 api = load_json('api.json')
 
 async def load_cogs():
