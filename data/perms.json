@@ -8,8 +8,8 @@
       "groups": ["dev", "mod", "tester", "special"],
       "perms": [""]
     },
-    "620272143955001385": {
-      "nickname": "Doxter",
+    "353552214092152833": {
+      "nickname": "bbrny",
       "groups": ["tester"],
       "perms": []
     }
@@ -18,6 +18,6 @@
     "dev": ["ping"],
     "special": [],
     "mod": [],
-    "tester": []
+    "tester": ["freegames"]
   }
 }
