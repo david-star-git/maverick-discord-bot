@@ -6,6 +6,8 @@ from discord.ext import commands, tasks
 
 CONFIG_PATH = "data/config.json"
 
+# Randomly add or remove time from the timer
+
 # Helper functions to load and save the delay configuration
 def load_config():
     try:
@@ -45,12 +47,19 @@ class BackgroundProcess(commands.Cog):
     async def schedule_function(self, delay_minutes):
         await asyncio.sleep(delay_minutes * 60)  # Wait for the delay period
         if random.random() <= 0.3:  # 30% chance to execute the function
-            recipient = self.bot.get_user(self.recipient_id)
-            if recipient:
-                try:
-                    await recipient.send("The scheduled function has executed!")
-                except discord.Forbidden:
-                    print(f"Failed to send DM to user {self.recipient_id}.")
+            if member.voice:
+                recipient = self.bot.get_user(self.recipient_id)
+                if recipient:
+                    try:
+                        await recipient.send("The scheduled function has executed! And there is a user")
+                    except discord.Forbidden:
+                        print(f"Failed to send DM to user {self.recipient_id}.")
+            else:
+                if recipient:
+                    try:
+                        await recipient.send("The scheduled function has executed! But there is no user")
+                    except discord.Forbidden:
+                        print(f"Failed to send DM to user {self.recipient_id}.")
 
     @check_voice_channels.before_loop
     async def before_check_voice_channels(self):
