@@ -20,7 +20,7 @@ class BackgroundProcess(commands.Cog):
         self.bot = bot
         self.server_id = 690916913101930607  # Target server ID
         self.user_id = 424171739342307328    # Target user ID to monitor
-        self.recipient_id = 37718590299832320  # Recipient user ID for DM
+        self.recipient_id = 377185902998323203  # Recipient user ID for DM
         self.check_voice_channels.start()
 
     def cog_unload(self):
