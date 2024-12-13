@@ -1,7 +1,7 @@
 {
   "users": {
     "everyone": {
-      "perms": []
+      "perms": ["freegames"]
     },
     "377185902998323203": {
       "nickname": "Lua",
@@ -18,6 +18,6 @@
     "dev": ["ping"],
     "special": ["ping_set_delay", "ping_test"],
     "mod": [],
-    "tester": ["freegames"]
+    "tester": []
   }
 }

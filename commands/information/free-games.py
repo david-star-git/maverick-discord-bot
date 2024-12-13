@@ -22,7 +22,7 @@ class FreeGamesCommand(commands.Cog):
                 delete_after=10
             )
             return
-        
+
         async with aiohttp.ClientSession() as session:
             # Endpoint for Epic Games free games
             url = "https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions"
@@ -35,11 +35,10 @@ class FreeGamesCommand(commands.Cog):
                     data = await response.json()
                     free_games = data.get("data", {}).get("Catalog", {}).get("searchStore", {}).get("elements", [])
 
-                    # Filter games with active promotions
+                    # Filter games that are truly free (price is 0 and are in the "freegames" category)
                     current_free_games = [
-                        game for game in free_games if game.get("promotions") and any(
-                            promo.get("promotionalOffers") for promo in game["promotions"].get("promotionalOffers", [])
-                        )
+                        game for game in free_games if game.get("price", {}).get("totalPrice", {}).get("discountPrice") == 0
+                                                       and "freegames" in [category.get("path", "") for category in game.get("categories", [])]
                     ]
 
                     if not current_free_games:
@@ -47,12 +46,11 @@ class FreeGamesCommand(commands.Cog):
                             content="No free games are currently available on the Epic Games Store.",
                         )
                         return
-                    
+
                     # Create embed for free games
-                    print(get_user_color(interaction.user.id))
                     embed = discord.Embed(
                         title="Free Games on Epic Games Store",
-                        color= get_user_color(interaction.user.id),
+                        color=get_user_color(interaction.user.id),
                         description="Here are the currently free games!"
                     )
 
