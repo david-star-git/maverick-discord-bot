@@ -16,7 +16,7 @@
   },
   "groups": {
     "dev": ["ping"],
-    "special": ["ping_set_delay", "ping_test"],
+    "special": ["ping_delay", "ping_test", "ping_msg"],
     "mod": [],
     "tester": []
   }

@@ -12,6 +12,9 @@ class PingwinCog(commands.Cog):
         if message.author == self.bot.user:
             return
 
+        if message.author.bot:
+            return
+
         if re.search(r'\bpingwin\b', message.content, re.IGNORECASE):
             await message.reply('Pingwin!')
 
