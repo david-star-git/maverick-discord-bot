@@ -1,7 +1,61 @@
 import discord
+import json
 from discord import app_commands
 from discord.ext import commands
 from imports.permissions import has_permission
+
+# Load and save config helpers
+CONFIG_PATH = "data/config.json"
+
+def load_config():
+    try:
+        with open(CONFIG_PATH, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+def save_config(data):
+    with open(CONFIG_PATH, "w") as f:
+        json.dump(data, f, indent=4)
+
+# Special modal for delay input
+class DelayModal(discord.ui.Modal, title="Set Delay"):
+    delay = discord.ui.TextInput(
+        label="Enter a delay (minutes)",
+        placeholder="Enter a number between 5-60",
+        min_length=1,
+        max_length=2,  # Allow only two-digit numbers
+        style=discord.TextStyle.short,
+    )
+
+    def __init__(self, interaction: discord.Interaction):
+        super().__init__()
+        self.interaction = interaction
+
+    async def on_submit(self, interaction: discord.Interaction):
+        try:
+            # Validate and save the delay value
+            delay_value = int(self.delay.value)
+            if 5 <= delay_value <= 60:
+                config = load_config()
+                config["delay"] = delay_value
+                save_config(config)
+
+                await interaction.response.send_message(
+                    content=f"Delay has been set to {delay_value} minutes.", ephemeral=True
+                )
+            else:
+                await interaction.response.send_message(
+                    content="Invalid input! Please enter a number between 5 and 60.", ephemeral=True
+                )
+        except ValueError:
+            await interaction.response.send_message(
+                content="Invalid input! Please enter a valid number.", ephemeral=True
+            )
+
+async def special_command_set_delay(interaction: discord.Interaction):
+    if has_permission(interaction.user.id, "ping_set_delay"):
+        await interaction.response.send_modal(DelayModal(interaction))
 
 async def special_command_test(interaction: discord.Interaction):
     if has_permission(interaction.user.id, "ping_test"):
@@ -10,7 +64,8 @@ async def special_command_test(interaction: discord.Interaction):
 async def handle_special_urls(url: str, interaction: discord.Interaction):
     # Map keywords to their corresponding command functions
     special_commands = {
-        "test": special_command_test
+        "test": special_command_test,
+        "set_delay": special_command_set_delay
     }
 
     # Check if the URL matches any special keywords

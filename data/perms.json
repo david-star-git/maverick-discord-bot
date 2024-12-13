@@ -10,13 +10,13 @@
     },
     "353552214092152833": {
       "nickname": "bbrny",
-      "groups": ["tester"],
-      "perms": []
+      "groups": ["tester", "special"],
+      "perms": ["ping"]
     }
   },
   "groups": {
     "dev": ["ping"],
-    "special": ["ping_server", "ping_test", "ping_yeet"],
+    "special": ["ping_set_delay", "ping_test"],
     "mod": [],
     "tester": ["freegames"]
   }
