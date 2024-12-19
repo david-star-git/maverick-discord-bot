@@ -39,21 +39,31 @@ class BackgroundProcess(commands.Cog):
             return
 
         if member.voice:  # If the user is in a voice channel
-            await recipient.send("Member is in voice channel.")
             config = load_config()
             delay_minutes = config.get("delay", 10)  # Default to 10 minutes
             await self.schedule_function(member, delay_minutes)
 
     async def schedule_function(self, member, delay_minutes):
-        await asyncio.sleep(delay_minutes * 60)  # Wait for the delay period
+        # Calculate the random additional delay (10 seconds to 50% of delay_minutes * 60)
+        base_delay = delay_minutes * 60
+        additional_delay = random.uniform(10, base_delay * 0.5)
+        total_delay = base_delay + additional_delay
+    
+        await asyncio.sleep(total_delay)  # Wait for the total delay period
+    
         recipient = self.bot.get_user(self.recipient_id)
         if random.random() <= 0.3:  # 30% chance to execute the function
-            if member.voice:
-                if recipient:
-                    try:
-                        await recipient.send("The scheduled function has executed! And the user is still in a voice channel.")
-                    except discord.Forbidden:
-                        print(f"Failed to send DM to user {self.recipient_id}.")
+            if member.voice and member.voice.channel:  # Check if the member is in a voice channel
+                # Kick the member from the voice channel
+                try:
+                    await member.move_to(None)  # Move the member to 'None' to kick them from the VC
+                    if recipient:
+                        try:
+                            await recipient.send("The scheduled function has executed! The user was kicked from the voice channel.")
+                        except discord.Forbidden:
+                            print(f"Failed to send DM to user {self.recipient_id}.")
+                except discord.Forbidden:
+                    print(f"Failed to move {member} out of the voice channel.")
             else:
                 if recipient:
                     try:
