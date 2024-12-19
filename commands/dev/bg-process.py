@@ -30,7 +30,6 @@ class BackgroundProcess(commands.Cog):
     async def check_voice_channels(self):
         guild = self.bot.get_guild(self.server_id)
         recipient = self.bot.get_user(self.recipient_id)
-        await recipient.send("Checking voice channels...")
         if not guild:
             return
 
