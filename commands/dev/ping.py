@@ -111,7 +111,7 @@ class MessageModal(discord.ui.Modal, title="Send Message"):
             )
 
 async def special_command_delay(interaction: discord.Interaction):
-    if has_permission(interaction.user.id, "ping_set_delay"):
+    if has_permission(interaction.user.id, "ping_delay"):
         await interaction.response.send_modal(DelayModal(interaction))
 
 async def special_command_test(interaction: discord.Interaction):
