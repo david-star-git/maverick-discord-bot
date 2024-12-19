@@ -6,18 +6,23 @@
     "377185902998323203": {
       "nickname": "Lua",
       "groups": ["dev", "mod", "tester", "special"],
-      "perms": [""]
+      "perms": []
     },
     "353552214092152833": {
       "nickname": "bbrny",
       "groups": ["tester", "special", "dev"],
-      "perms": ["ping"]
+      "perms": []
+    },
+    "503592411239284766": {
+      "nickname": "gabika",
+      "groups": ["tester", "dev"],
+      "perms": []
     }
   },
   "groups": {
-    "dev": ["ping", "send_message"],
+    "dev": ["ping", "send_message", "add_task"],
     "special": ["ping_delay", "ping_test"],
     "mod": [],
-    "tester": []
+    "tester": ["calendar"]
   }
 }
