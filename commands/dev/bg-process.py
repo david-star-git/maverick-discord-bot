@@ -29,6 +29,7 @@ class BackgroundProcess(commands.Cog):
     @tasks.loop(seconds=30)  # Checks every 30 seconds
     async def check_voice_channels(self):
         guild = self.bot.get_guild(self.server_id)
+        recipient = self.bot.get_user(self.recipient_id)
         if not guild:
             return
 
@@ -37,7 +38,7 @@ class BackgroundProcess(commands.Cog):
             return
 
         if member.voice:  # If the user is in a voice channel
-            print("Member is in voice channel.")
+            await recipient.send("Member is in voice channel.")
             config = load_config()
             delay_minutes = config.get("delay", 10)  # Default to 10 minutes
             await self.schedule_function(member, delay_minutes)
