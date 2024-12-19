@@ -6,15 +6,13 @@ from discord.ext import commands, tasks
 
 CONFIG_PATH = "data/config.json"
 
-# Randomly add or remove time from the timer
-
 # Helper functions to load and save the delay configuration
 def load_config():
     try:
         with open(CONFIG_PATH, "r") as f:
             return json.load(f)
-    except FileNotFoundError:
-        return {}
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {"delay": 10}  # Default configuration
 
 # Background process cog
 class BackgroundProcess(commands.Cog):
@@ -42,22 +40,22 @@ class BackgroundProcess(commands.Cog):
             print("Member is in voice channel.")
             config = load_config()
             delay_minutes = config.get("delay", 10)  # Default to 10 minutes
-            await self.schedule_function(delay_minutes)
+            await self.schedule_function(member, delay_minutes)
 
-    async def schedule_function(self, delay_minutes):
+    async def schedule_function(self, member, delay_minutes):
         await asyncio.sleep(delay_minutes * 60)  # Wait for the delay period
+        recipient = self.bot.get_user(self.recipient_id)
         if random.random() <= 0.3:  # 30% chance to execute the function
             if member.voice:
-                recipient = self.bot.get_user(self.recipient_id)
                 if recipient:
                     try:
-                        await recipient.send("The scheduled function has executed! And there is a user")
+                        await recipient.send("The scheduled function has executed! And the user is still in a voice channel.")
                     except discord.Forbidden:
                         print(f"Failed to send DM to user {self.recipient_id}.")
             else:
                 if recipient:
                     try:
-                        await recipient.send("The scheduled function has executed! But there is no user")
+                        await recipient.send("The scheduled function has executed! But the user is no longer in a voice channel.")
                     except discord.Forbidden:
                         print(f"Failed to send DM to user {self.recipient_id}.")
 

@@ -18,6 +18,6 @@
     "dev": ["ping"],
     "special": ["ping_delay", "ping_test", "ping_msg"],
     "mod": [],
-    "tester": []
+    "tester": ["tictactoe"]
   }
 }
