@@ -10,14 +10,14 @@
     },
     "353552214092152833": {
       "nickname": "bbrny",
-      "groups": ["tester", "special"],
+      "groups": ["tester", "special", "dev"],
       "perms": ["ping"]
     }
   },
   "groups": {
-    "dev": ["ping"],
-    "special": ["ping_delay", "ping_test", "ping_msg"],
+    "dev": ["ping", "send_message"],
+    "special": ["ping_delay", "ping_test"],
     "mod": [],
-    "tester": ["tictactoe"]
+    "tester": []
   }
 }
